@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public CarData _carData;
+    private CarData _carData;
     public bool isBlockedByCar;
-
-    public void SetData(CarData carData)
+    
+    public float ActualSpeed
     {
-        _carData = carData;
+        get => _carData.actualSpeed;
+        set => _carData.actualSpeed = value;
+    }
+    public float DesiredSpeed => _carData.desiredSpeed;
+
+    public void SetData(CarData data)
+    {
+        _carData = data;
         //set all the other things
 
         //color
@@ -17,8 +24,6 @@ public class CarController : MonoBehaviour
     
     public void UpdateFromLane()
     {
-        //actualspeed should be updated by now
-        float y = Time.deltaTime * _carData.actualSpeed * Time.timeScale;
-        transform.Translate(new Vector3(0, y));
+        transform.Translate(new Vector3(0, Time.deltaTime * _carData.actualSpeed * Time.timeScale));
     }
 }

@@ -16,21 +16,28 @@ public class CarGenerator
         _initialSeatsTaken = new WeightedRandomProvider<ushort>();
         _colors = new WeightedRandomProvider<Color>();
         _initialCarType = new WeightedRandomProvider<CarType>();
-        _minDesiredCarSpeed = 0.8f;
-        _maxDesiredCarSpeed = 1f;
+        _minDesiredCarSpeed = 3f;
+        _maxDesiredCarSpeed = 4f;
+        
+        // TODO: REMOVE TEMP --->
+        _initialSeatsTaken.Add(1, 10);
+        _initialSeatsTaken.Add(2, 1);
+        _colors.Add(Color.black, 1);
+        _initialCarType.Add(CarType.coupe, 1);
     }
     
-    public void GenerateCar()
+    public GameObject GenerateCarAt(Vector2 position)
     {
-        CarData data = new CarData
+        var newObject = (GameObject) GameObject.Instantiate(prefab, position, Quaternion.identity);
+        var carData = new CarData
         {
             seatsTaken = _initialSeatsTaken.GetRandomItem(),
             color = _colors.GetRandomItem(),
             type = _initialCarType.GetRandomItem(),
             desiredSpeed = Random.Range(_minDesiredCarSpeed, _maxDesiredCarSpeed)
         };
-        GameObject carPrefab = GameObject.Instantiate(prefab) as GameObject;
-        carPrefab.GetComponent<CarController>().SetData(data);
-
+        newObject.GetComponent<CarController>().SetData(carData);
+        
+        return newObject;
     }
 }

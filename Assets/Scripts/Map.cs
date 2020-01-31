@@ -15,10 +15,10 @@ namespace UnityTemplateProjects
         
         private void Start()
         {
-            _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponentInChildren<SpriteRenderer>());
-            _separationLinePrefabWidth = GetRendererWidth(separationLinePrefab.GetComponentInChildren<SpriteRenderer>());
-            _leftSidewalkPrefabWidth = GetRendererWidth(leftSidewalkPrefab.GetComponentInChildren<SpriteRenderer>());
-            _rightSidewalkPrefabWidth = GetRendererWidth(rightSidewalkPrefab.GetComponentInChildren<SpriteRenderer>());
+            _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponent<SpriteRenderer>());
+            _separationLinePrefabWidth = GetRendererWidth(separationLinePrefab.GetComponent<SpriteRenderer>());
+            _leftSidewalkPrefabWidth = GetRendererWidth(leftSidewalkPrefab.GetComponent<SpriteRenderer>());
+            _rightSidewalkPrefabWidth = GetRendererWidth(rightSidewalkPrefab.GetComponent<SpriteRenderer>());
             Start2();
         }
         
@@ -32,7 +32,7 @@ namespace UnityTemplateProjects
             var totalWidth = lanesNum * _lanePrefabWidth + (lanesNum - 1) * _separationLinePrefabWidth + _leftSidewalkPrefabWidth + _rightSidewalkPrefabWidth;
             var leftmostDrawPosition = middlePosition - new Vector2(totalWidth / 2, 0);
             
-            var lastObject = Instantiate(leftSidewalkPrefab, leftmostDrawPosition, Quaternion.identity, gameObjectTransform);
+            var lastObject = Instantiate(leftSidewalkPrefab, leftmostDrawPosition + Vector2.right * _leftSidewalkPrefabWidth / 2, Quaternion.identity, gameObjectTransform);
             
             for (var i = 0; i < lanesNum; i++)
             {

@@ -3,38 +3,42 @@ using UnityEngine;
 
 public class LaneController : MonoBehaviour
 {
-    private List<CarController> _carsInLane;
-    //public 
-    // (first car) => (car) => (car) => (last car)
-
-    // Start is called before the first frame update
+    private CarGenerator _carGenerator;
+    private List<CarController> _carControllers;
+    
     private void Start()
     {
-        _carsInLane = new List<CarController>();
+        _carGenerator = new CarGenerator();
+        _carControllers = new List<CarController>();
+        Invoke(nameof(AddCar), 2);
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        float currLaneSpeed = 1;
-        
-        foreach (CarController carCont in _carsInLane)
+        for (var i = 0; i < _carControllers.Count; i++)
         {
-            //CarController carCont = item.GetComponent<CarController>();
-            currLaneSpeed = Mathf.Min(carCont._carData.actualSpeed, currLaneSpeed);
-            carCont._carData.actualSpeed = currLaneSpeed;
+            var carController = _carControllers[i];
 
-            if (carCont.isBlockedByCar)
+            switch (i)
             {
-                carCont._carData.actualSpeed /= 2;
-                //break sound event?
+                case 0:
+                    carController.ActualSpeed = carController.DesiredSpeed;
+                    break;
+                default:
+                {
+                    carController.ActualSpeed = carController.isBlockedByCar ? _carControllers[i - 1].ActualSpeed : carController.DesiredSpeed;
+
+                    break;
+                }
             }
-            carCont.UpdateFromLane();
+            
+            carController.UpdateFromLane();
         }
     }
 
-    public void AddCar(CarController car)
+    public void AddCar()
     {
-        _carsInLane.Add(car);
+        var newCar = _carGenerator.GenerateCarAt(transform.position);
+        _carControllers.Add(newCar.GetComponent<CarController>());
     }
 }
