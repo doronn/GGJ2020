@@ -14,7 +14,7 @@ namespace UnityTemplateProjects.GameConfigs
     public class LevelEconomy
     {
         [SerializeField] public CarTypeDefinitions carTypeDefinitions;
-        [SerializeField] public IntWeightedRandomDefinition[] initialSeatsTaken;
+        [SerializeField] public UShortWeightedRandomDefinition[] initialSeatsTaken;
         [SerializeField] public ColorWeightedRandomDefinition[] carColors;
         [SerializeField] public CarTypeWeightedRandomDefinition[] carTypes;
         [SerializeField] public MinMaxDefinition carSpeed;
@@ -23,7 +23,7 @@ namespace UnityTemplateProjects.GameConfigs
     }
     
     [Serializable]
-    public class CarTypeDefinitions : SerializableDictionaryBase<CarData.CarType, int>
+    public class CarTypeDefinitions : SerializableDictionaryBase<CarType, int>
     {
     }
     
@@ -35,7 +35,7 @@ namespace UnityTemplateProjects.GameConfigs
     }
     
     [Serializable]
-    public class IntWeightedRandomDefinition : WeightedRandomDefinition<int>
+    public class UShortWeightedRandomDefinition : WeightedRandomDefinition<ushort>
     {
     }
     
@@ -45,7 +45,7 @@ namespace UnityTemplateProjects.GameConfigs
     }
     
     [Serializable]
-    public class CarTypeWeightedRandomDefinition : WeightedRandomDefinition<CarData.CarType>
+    public class CarTypeWeightedRandomDefinition : WeightedRandomDefinition<CarType>
     {
     }
     

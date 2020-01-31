@@ -5,7 +5,7 @@ public class CarGenerator
 {
     private readonly WeightedRandomProvider<ushort> _initialSeatsTaken;
     private readonly WeightedRandomProvider<Color> _colors;
-    private readonly WeightedRandomProvider<CarData.CarType> _initialCarType;
+    private readonly WeightedRandomProvider<CarType> _initialCarType;
     private readonly float _minDesiredCarSpeed;
     private readonly float _maxDesiredCarSpeed;
     private static readonly Object prefab = Resources.Load("Prefabs/CarPrefab");
@@ -15,7 +15,7 @@ public class CarGenerator
         // TODO: add values
         _initialSeatsTaken = new WeightedRandomProvider<ushort>();
         _colors = new WeightedRandomProvider<Color>();
-        _initialCarType = new WeightedRandomProvider<CarData.CarType>();
+        _initialCarType = new WeightedRandomProvider<CarType>();
         _minDesiredCarSpeed = 0.8f;
         _maxDesiredCarSpeed = 1f;
     }
