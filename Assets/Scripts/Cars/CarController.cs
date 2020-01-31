@@ -7,6 +7,7 @@ public class CarController : MonoBehaviour
 {
     [SerializeField]
     public CarData data = null;
+    public bool isBlockedByCar = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +36,12 @@ public class CarController : MonoBehaviour
         {
             Debug.Log("car running without data and this is not very nice :<");
         }
+    }
+
+    public void updateFromLane()
+    {
+        //actualspeed should be updated by now
+        float y = Time.deltaTime * data.actualSpeed * Time.timeScale;
+        transform.Translate(new Vector3(0, y));
     }
 }
