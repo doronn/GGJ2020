@@ -1,6 +1,6 @@
 public enum CarType
 {
-    sedan,
-    bus,
-    coupe
+    Sedan,
+    Bus,
+    Coupe
 }

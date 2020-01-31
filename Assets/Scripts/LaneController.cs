@@ -11,6 +11,9 @@ public class LaneController : MonoBehaviour
         _carGenerator = new CarGenerator();
         _carControllers = new List<CarController>();
         Invoke(nameof(AddCar), 2);
+        Invoke(nameof(AddCar), 4);
+        Invoke(nameof(AddCar), 5);
+        Invoke(nameof(AddCar), 8);
     }
 
     private void Update()

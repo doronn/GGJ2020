@@ -52,7 +52,17 @@ namespace UnityTemplateProjects.GameConfigs
     [Serializable]
     public class MinMaxDefinition
     {
-        [SerializeField] public float minValue;
-        [SerializeField] public float maxValue;
+        [SerializeField] public float min;
+        [SerializeField] public float max;
+
+        public MinMaxDefinition()
+        {
+        }
+
+        public MinMaxDefinition(float minValue, float maxValue)
+        {
+            min = minValue;
+            max = maxValue;
+        }
     }
 }

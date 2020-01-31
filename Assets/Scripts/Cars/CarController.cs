@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer chassis;
     private CarData _carData;
     public bool isBlockedByCar;
     
@@ -15,11 +16,7 @@ public class CarController : MonoBehaviour
     public void SetData(CarData data)
     {
         _carData = data;
-        //set all the other things
-
-        //color
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = _carData.color;
+        chassis.color = _carData.color;
     }
     
     public void UpdateFromLane()

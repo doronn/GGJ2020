@@ -32,7 +32,7 @@ namespace UnityTemplateProjects
             var totalWidth = lanesNum * _lanePrefabWidth + (lanesNum - 1) * _separationLinePrefabWidth + _leftSidewalkPrefabWidth + _rightSidewalkPrefabWidth;
             var leftmostDrawPosition = middlePosition - new Vector2(totalWidth / 2, 0);
             
-            var lastObject = Instantiate(leftSidewalkPrefab, leftmostDrawPosition + Vector2.right * _leftSidewalkPrefabWidth / 2, Quaternion.identity, gameObjectTransform);
+            var lastObject = Instantiate(leftSidewalkPrefab, leftmostDrawPosition + new Vector2(_leftSidewalkPrefabWidth / 2, 0), Quaternion.identity, gameObjectTransform);
             
             for (var i = 0; i < lanesNum; i++)
             {
@@ -54,10 +54,10 @@ namespace UnityTemplateProjects
         
         private GameObject InstantiateNextTo(GameObject original, GameObject prefab)
         {
-            var m = original.GetComponentInChildren<Renderer>();
-            var t = original.transform;
-            var originalWidth = m.bounds.size.x * t.localScale.x;
-            return Instantiate(prefab, t.position + new Vector3(originalWidth,0,0), Quaternion.identity, transform);
+            var originalRenderer = original.GetComponentInChildren<Renderer>();
+            var originalTransform = original.transform;
+            var originalWidth = originalRenderer.bounds.size.x * originalTransform.localScale.x;
+            return Instantiate(prefab, originalTransform.position + new Vector3(originalWidth,0,0), Quaternion.identity, transform);
         }
     }
 }
