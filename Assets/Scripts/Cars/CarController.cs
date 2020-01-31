@@ -3,7 +3,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer chassis;
-    private CarData _carData;
+    [SerializeField] private CarData _carData;
     public bool isBlockedByCar;
     
     public float ActualSpeed
