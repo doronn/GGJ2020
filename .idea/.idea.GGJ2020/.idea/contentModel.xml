@@ -88,6 +88,7 @@
           <e p="GameConfigs" t="Include">
             <e p="Economy.cs" t="Include" />
           </e>
+          <e p="Map.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="Utils" t="Include">
             <e p="BaseSingleton.cs" t="Include" />
