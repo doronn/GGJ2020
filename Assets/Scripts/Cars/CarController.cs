@@ -1,47 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class CarController : MonoBehaviour
 {
-    [SerializeField]
-    public CarData data = null;
-    public bool isBlockedByCar = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CarData _carData;
+    public bool isBlockedByCar;
 
-    public void setData(CarData _data)
+    public void SetData(CarData carData)
     {
-        data = _data;
+        _carData = carData;
         //set all the other things
 
         //color
-        SpriteRenderer s = GetComponent<SpriteRenderer>();
-        s.color = data.color;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = _carData.color;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (data != null)
-        {
-
-            //make it move or smth
-        } 
-        else
-        {
-            Debug.Log("car running without data and this is not very nice :<");
-        }
-    }
-
-    public void updateFromLane()
+    
+    public void UpdateFromLane()
     {
         //actualspeed should be updated by now
-        float y = Time.deltaTime * data.actualSpeed * Time.timeScale;
+        float y = Time.deltaTime * _carData.actualSpeed * Time.timeScale;
         transform.Translate(new Vector3(0, y));
     }
 }

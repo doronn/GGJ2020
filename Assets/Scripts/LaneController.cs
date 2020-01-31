@@ -1,40 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class laneController : MonoBehaviour
+public class LaneController : MonoBehaviour
 {
-    private List<CarController> carsInLane;
+    private List<CarController> _carsInLane;
     //public 
     // (first car) => (car) => (car) => (last car)
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        carsInLane = new List<CarController>();
+        _carsInLane = new List<CarController>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float currLaneSpeed = 1;
-        foreach (CarController carCont in carsInLane)
+        
+        foreach (CarController carCont in _carsInLane)
         {
             //CarController carCont = item.GetComponent<CarController>();
-            currLaneSpeed = Mathf.Min(carCont.data.actualSpeed, currLaneSpeed);
-            carCont.data.actualSpeed = currLaneSpeed;
+            currLaneSpeed = Mathf.Min(carCont._carData.actualSpeed, currLaneSpeed);
+            carCont._carData.actualSpeed = currLaneSpeed;
 
             if (carCont.isBlockedByCar)
             {
-                carCont.data.actualSpeed /= 2;
+                carCont._carData.actualSpeed /= 2;
                 //break sound event?
             }
-            carCont.updateFromLane();
+            carCont.UpdateFromLane();
         }
     }
 
-    void addCar(CarController car)
+    public void AddCar(CarController car)
     {
-        carsInLane.Add(car);
+        _carsInLane.Add(car);
     }
 }

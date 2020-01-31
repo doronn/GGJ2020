@@ -30,7 +30,7 @@ public class CarGenerator
             desiredSpeed = Random.Range(_minDesiredCarSpeed, _maxDesiredCarSpeed)
         };
         GameObject carPrefab = GameObject.Instantiate(prefab) as GameObject;
-        carPrefab.GetComponent<CarController>().setData(data);
+        carPrefab.GetComponent<CarController>().SetData(data);
 
     }
 }
