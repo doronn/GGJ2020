@@ -36,19 +36,7 @@ namespace DragSystem
 
             if (touches.Count == 0)
             {
-                if (_hoveredColliders == null)
-                {
-                    return;
-                }
-
-                /*
-                foreach (var hoveredCollider in _hoveredColliders)
-                {
-                    var ggUp = hoveredCollider.GetComponent<IGgPointerUp>();
-                    ggUp?.OnGgPointerUp();
-                }*/
-
-                _hoveredColliders.Clear();
+                _hoveredColliders?.Clear();
                 return;
             }
 
@@ -77,14 +65,16 @@ namespace DragSystem
                     ggUp?.OnGgPointerUp();
                 }
 
+                currentColliders.Add(raycastHit.collider);
+                
                 if (!_hoveredColliders.Add(raycastHit.collider))
                 {
-                    return;
+                    continue;
                 }
-
-                currentColliders.Add(raycastHit.collider);
+                
                 var ggEnter = raycastHit.collider.GetComponent<IGgPointerEnter>();
                 ggEnter?.OnGgPointerEnter();
+                
             }
 
             var exitColliders =
