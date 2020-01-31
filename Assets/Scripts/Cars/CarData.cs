@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using carcikir
 
-public class Car
+public class CarData
 {
     // public
     public enum CarType
@@ -11,7 +11,7 @@ public class Car
         sedan,
         bus,
         coupe
-    }
+    };
     
     public Color color;
     public ushort seats;
