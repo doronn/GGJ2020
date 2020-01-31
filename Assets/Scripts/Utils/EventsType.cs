@@ -3,5 +3,6 @@
     public enum EventsType
     {
         
+        GenerateCarsEvent
     }
 }

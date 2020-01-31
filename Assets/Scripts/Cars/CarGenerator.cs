@@ -30,7 +30,7 @@ public class CarGenerator
         
         _initialSeatsTaken.Add(1, 10);
         _initialSeatsTaken.Add(2, 1);
-        _colors.Add(Color.black, 1);
+        _colors.Add(Color.cyan, 1);
         _colors.Add(Color.blue, 1);
         _colors.Add(Color.red, 1);
         _colors.Add(Color.gray, 1);
