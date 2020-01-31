@@ -83,6 +83,9 @@
           <e p="Cars" t="Include">
             <e p="Car.cs" t="Include" />
           </e>
+          <e p="GameConfigs" t="Include">
+            <e p="Economy.cs" t="Include" />
+          </e>
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="Utils" t="Include">
             <e p="BaseSingleton.cs" t="Include" />
