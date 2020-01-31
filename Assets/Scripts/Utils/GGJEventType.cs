@@ -2,7 +2,7 @@
 {
     public enum GGJEventType
     {
-        onX,
-        onY
+        InputTouchUp,
+        ReleasedOnValidDropTarget
     }
 }
