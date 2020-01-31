@@ -15,38 +15,49 @@ namespace UnityTemplateProjects
         
         private void Start()
         {
-            _lanePrefabWidth = lanePrefab.GetComponent<Sprite>().bounds.size.x;
-            _separationLinePrefabWidth = separationLinePrefab.GetComponent<Sprite>().bounds.size.x;
-            _leftSidewalkPrefabWidth = leftSidewalkPrefab.GetComponent<Sprite>().bounds.size.x;
-            _rightSidewalkPrefabWidth = rightSidewalkPrefab.GetComponent<Sprite>().bounds.size.x;
+            _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponentInChildren<SpriteRenderer>());
+            _separationLinePrefabWidth = GetRendererWidth(separationLinePrefab.GetComponentInChildren<SpriteRenderer>());
+            _leftSidewalkPrefabWidth = GetRendererWidth(leftSidewalkPrefab.GetComponentInChildren<SpriteRenderer>());
+            _rightSidewalkPrefabWidth = GetRendererWidth(rightSidewalkPrefab.GetComponentInChildren<SpriteRenderer>());
+            Start2();
         }
         
-        public void Generate(int lanesNum)
+        //public void Generate(int lanesNum)
+        public void Start2()
         {
+            var lanesNum = 3;
             // we must make sure that the position point is indeed set as the middle of the GameObject on Unity
-            var middlePosition = (Vector2) transform.position;
+            var gameObjectTransform = transform;
+            var middlePosition = (Vector2) gameObjectTransform.position;
             var totalWidth = lanesNum * _lanePrefabWidth + (lanesNum - 1) * _separationLinePrefabWidth + _leftSidewalkPrefabWidth + _rightSidewalkPrefabWidth;
-            var leftmostDrawPoint = middlePosition - new Vector2(totalWidth / 2, 0);
+            var leftmostDrawPosition = middlePosition - new Vector2(totalWidth / 2, 0);
             
-            DrawGameObject(leftSidewalkPrefab, leftmostDrawPoint, _leftSidewalkPrefabWidth);
+            var lastObject = Instantiate(leftSidewalkPrefab, leftmostDrawPosition, Quaternion.identity, gameObjectTransform);
             
             for (var i = 0; i < lanesNum; i++)
             {
-                DrawGameObject(lanePrefab, leftmostDrawPoint, _lanePrefabWidth);
+                lastObject = InstantiateNextTo(lastObject, lanePrefab);
                 
                 if (i < lanesNum - 1)
                 {
-                    DrawGameObject(separationLinePrefab, leftmostDrawPoint, _separationLinePrefabWidth);
+                    lastObject = InstantiateNextTo(lastObject, separationLinePrefab);
                 }
             }
             
-            DrawGameObject(rightSidewalkPrefab, leftmostDrawPoint, _rightSidewalkPrefabWidth);
+            InstantiateNextTo(lastObject, rightSidewalkPrefab);
+        }
+
+        private static float GetRendererWidth(Renderer spriteRenderer)
+        {
+            return spriteRenderer.bounds.size.x * spriteRenderer.transform.localScale.x;
         }
         
-        private static void DrawGameObject(GameObject obj, Vector3 position, float width)
+        private GameObject InstantiateNextTo(GameObject original, GameObject prefab)
         {
-            Instantiate(obj, position, Quaternion.identity);
-            position.Set(position.x + width, position.y, position.z);
+            var m = original.GetComponentInChildren<Renderer>();
+            var t = original.transform;
+            var originalWidth = m.bounds.size.x * t.localScale.x;
+            return Instantiate(prefab, t.position + new Vector3(originalWidth,0,0), Quaternion.identity, transform);
         }
     }
 }

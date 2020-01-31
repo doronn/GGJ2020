@@ -83,11 +83,13 @@
             <e p="CarController.cs" t="Include" />
             <e p="CarData.cs" t="Include" />
             <e p="CarGenerator.cs" t="Include" />
+            <e p="CarTopSensor.cs" t="Include" />
             <e p="CarType.cs" t="Include" />
           </e>
           <e p="GameConfigs" t="Include">
             <e p="Economy.cs" t="Include" />
           </e>
+          <e p="LaneController.cs" t="Include" />
           <e p="Map.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="Utils" t="Include">

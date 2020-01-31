@@ -12,4 +12,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18f97a98814e7d9342d6b7c102b601, type: 3}
   m_Name: Game Economy
   m_EditorClassIdentifier: 
-  levelEconomies: []
+  levelEconomies:
+  - carTypeDefinitions:
+      reorderableList:
+        canAdd: 1
+        canRemove: 1
+        draggable: 1
+        expandable: 1
+        multipleSelection: 1
+        isExpanded: 1
+        label:
+          m_Text: Keys
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        headerHeight: 18
+        footerHeight: 13
+        slideEasing: 0.15
+        verticalSpacing: 2
+        showDefaultBackground: 1
+        elementDisplayType: 0
+        elementNameProperty: 
+        elementNameOverride: 
+        elementIcon: {fileID: 0}
+      reqReferences: {fileID: 0}
+      isExpanded: 1
+      _keyValues: 000000000200000001000000
+      _keys: 000000000200000001000000
+      _values: 05000000020000000a000000
+    initialSeatsTaken:
+    - weight: 20
+      item: 1
+    - weight: 1
+      item: 2
+    carColors:
+    - weight: 1
+      item: {r: 0, g: 0, b: 0, a: 0}
+    - weight: 1
+      item: {r: 0.94117653, g: 0.94117653, b: 0.94117653, a: 0}
+    - weight: 1
+      item: {r: 0.7176471, g: 0.27058825, b: 0.27450982, a: 0}
+    - weight: 1
+      item: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0}
+    - weight: 1
+      item: {r: 0.43137258, g: 0.59607846, b: 0.8352942, a: 0}
+    - weight: 1
+      item: {r: 0.19607845, g: 0.49411768, b: 0.21568629, a: 0}
+    - weight: 1
+      item: {r: 0.7843138, g: 0.59607846, b: 0.12941177, a: 0}
+    carTypes:
+    - weight: 20
+      item: 2
+    - weight: 2
+      item: 0
+    - weight: 1
+      item: 1
+    carSpeed:
+      minValue: 0.8
+      maxValue: 1.2
+    targetScore: 100
+    duration: 30
