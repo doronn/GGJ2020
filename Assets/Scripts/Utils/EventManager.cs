@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using RotaryHeart.Lib.SerializableDictionary;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Utils
 {
     public class EventManager : BaseSingleton<EventManager>
     {
-        public Dictionary<GGJEventType, UnityEvent> events;
+        [SerializeField]
+        private EventDictionary events;
         
         public void Subscribe(GGJEventType eventType, UnityAction onEvent)
         {
@@ -37,5 +40,11 @@ namespace Utils
             
             unityEvent.RemoveListener(eventToRemove);
         }
+    }
+
+    [Serializable]
+    public class EventDictionary : SerializableDictionaryBase<GGJEventType, UnityEvent>
+    {
+        
     }
 }
