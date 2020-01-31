@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Utils;
 
 public class CarGenerator
