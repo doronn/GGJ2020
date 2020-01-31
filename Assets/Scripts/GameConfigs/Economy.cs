@@ -23,7 +23,7 @@ namespace UnityTemplateProjects.GameConfigs
     }
     
     [Serializable]
-    public class CarTypeDefinitions : SerializableDictionaryBase<Car.CarType, int>
+    public class CarTypeDefinitions : SerializableDictionaryBase<CarData.CarType, int>
     {
     }
     
@@ -45,7 +45,7 @@ namespace UnityTemplateProjects.GameConfigs
     }
     
     [Serializable]
-    public class CarTypeWeightedRandomDefinition : WeightedRandomDefinition<Car.CarType>
+    public class CarTypeWeightedRandomDefinition : WeightedRandomDefinition<CarData.CarType>
     {
     }
     
