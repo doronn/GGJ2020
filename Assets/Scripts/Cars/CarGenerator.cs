@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 public class CarGenerator
 {
     private static readonly Object SedanPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}");
-    private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(BusPrefab)}"); // BusPrefab
-    private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(CoupePrefab)}"); // CoupePrefab
+    private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(BusPrefab)}");
+    private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(CoupePrefab)}");
     public readonly LevelEconomy levelEconomy;
     private Transform _carsContainer;
 
