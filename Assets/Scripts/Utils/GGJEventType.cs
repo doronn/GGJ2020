@@ -7,6 +7,7 @@
         ScoreUpdated,
         TimeUpdated,
         GameStarted,
-        GamePaused
+        GamePaused,
+        LevelFinishContinue
     }
 }

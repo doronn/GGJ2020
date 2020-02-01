@@ -40,14 +40,14 @@ public class CarGenerator
         switch (carData.type)
         {
             case CarType.Sedan:
-                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, new Vector3(position.x, position.y, -5), Quaternion.identity, _carsContainer);
+                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, new Vector3(position.x, position.y - 30, -5), Quaternion.identity, _carsContainer);
                 break;
             case CarType.Bus:
-                newObject = (GameObject) GameObject.Instantiate(BusPrefab, new Vector3(position.x, position.y, -5), Quaternion.identity, _carsContainer);
+                newObject = (GameObject) GameObject.Instantiate(BusPrefab, new Vector3(position.x, position.y - 30, -5), Quaternion.identity, _carsContainer);
                 carData.color = Color.white; // keep the original asset color
                 break;
             case CarType.Coupe:
-                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, new Vector3(position.x, position.y, -5), Quaternion.identity, _carsContainer);
+                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, new Vector3(position.x, position.y - 30, -5), Quaternion.identity, _carsContainer);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
