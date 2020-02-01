@@ -18,7 +18,7 @@ namespace UnityTemplateProjects
         
         private void Awake()
         {
-            _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponent<SpriteRenderer>());
+            _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponentInChildren<SpriteRenderer>());
             _separationLinePrefabWidth = GetRendererWidth(separationLinePrefab.GetComponent<SpriteRenderer>());
             _leftSidewalkPrefabWidth = GetRendererWidth(leftSidewalkPrefab.GetComponent<SpriteRenderer>());
             _rightSidewalkPrefabWidth = GetRendererWidth(rightSidewalkPrefab.GetComponent<SpriteRenderer>());
