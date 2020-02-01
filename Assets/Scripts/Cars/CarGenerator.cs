@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityTemplateProjects.GameConfigs;
+using UnityTemplateProjects.Level;
 using UnityTemplateProjects.World;
 using Utils;
 using Object = UnityEngine.Object;
@@ -8,65 +9,45 @@ using Random = UnityEngine.Random;
 
 public class CarGenerator
 {
-    private readonly WeightedRandomProvider<ushort> _initialSeatsTaken;
-    private readonly WeightedRandomProvider<Color> _colors;
-    private readonly WeightedRandomProvider<CarType> _initialCarType;
-    private readonly MinMaxDefinition _desiredCarSpeed;
     private static readonly Object SedanPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}");
     private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // BusPrefab
     private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // CoupePrefab
-    private Transform CarsContainer;
+    public readonly LevelEconomy levelEconomy;
+    private Transform _carsContainer;
 
-    public CarGenerator()
+    public CarGenerator(int level)
     {
-        // TODO: add values
-        _initialSeatsTaken = new WeightedRandomProvider<ushort>();
-        _colors = new WeightedRandomProvider<Color>();
-        _initialCarType = new WeightedRandomProvider<CarType>();
-        
-        // TODO: REMOVE TEMP --->
-        _desiredCarSpeed = new MinMaxDefinition(9, 14);
-        
-        _initialSeatsTaken.Add(1, 2);
-        _initialSeatsTaken.Add(2, 1);
-        _colors.Add(Color.cyan, 10);
-        _colors.Add(Color.blue, 10);
-        _colors.Add(Color.red, 10);
-        _colors.Add(Color.gray, 10);
-        _colors.Add(Color.green, 10);
-        _initialCarType.Add(CarType.Coupe, 10);
-        _initialCarType.Add(CarType.Sedan, 10);
-        _initialCarType.Add(CarType.Bus, 10);
+        levelEconomy = LevelEconomyProvider.GetEconomyForLevel(1);
     }
     
     public GameObject GenerateCarAt(Vector2 position)
     {
         // TODO: temp --->
-        if (CarsContainer == null)
+        if (_carsContainer == null)
         {
-            CarsContainer = WorldRootController.GetInstance().WorldRootTransform;
+            _carsContainer = WorldRootController.GetInstance().WorldRootTransform;
         }
         
         var carData = new CarData
         {
-            seatsTaken = _initialSeatsTaken.GetRandomItem(),
-            color = _colors.GetRandomItem(),
-            type = _initialCarType.GetRandomItem(),
-            desiredSpeed = Random.Range(_desiredCarSpeed.min, _desiredCarSpeed.max)
+            seatsTaken = levelEconomy.initialSeatsTaken.GetRandomItem(),
+            color = levelEconomy.carColors.GetRandomItem(),
+            type = levelEconomy.carTypes.GetRandomItem(),
+            desiredSpeed = Random.Range(levelEconomy.carSpeed.min, levelEconomy.carSpeed.max)
         };
         GameObject newObject;
         
         switch (carData.type)
         {
             case CarType.Sedan:
-                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, position, Quaternion.identity, CarsContainer);
+                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, position, Quaternion.identity, _carsContainer);
                 break;
             case CarType.Bus:
-                newObject = (GameObject) GameObject.Instantiate(BusPrefab, position, Quaternion.identity, CarsContainer);
+                newObject = (GameObject) GameObject.Instantiate(BusPrefab, position, Quaternion.identity, _carsContainer);
                 carData.color = Color.white; // keep the original asset color
                 break;
             case CarType.Coupe:
-                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, position, Quaternion.identity, CarsContainer);
+                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, position, Quaternion.identity, _carsContainer);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

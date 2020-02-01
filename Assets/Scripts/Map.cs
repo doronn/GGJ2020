@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityTemplateProjects
@@ -12,20 +13,20 @@ namespace UnityTemplateProjects
         private float _separationLinePrefabWidth;
         private float _leftSidewalkPrefabWidth;
         private float _rightSidewalkPrefabWidth;
+
+        public List<LaneController> laneControllers;
         
-        private void Start()
+        private void Awake()
         {
             _lanePrefabWidth = GetRendererWidth(lanePrefab.GetComponent<SpriteRenderer>());
             _separationLinePrefabWidth = GetRendererWidth(separationLinePrefab.GetComponent<SpriteRenderer>());
             _leftSidewalkPrefabWidth = GetRendererWidth(leftSidewalkPrefab.GetComponent<SpriteRenderer>());
             _rightSidewalkPrefabWidth = GetRendererWidth(rightSidewalkPrefab.GetComponent<SpriteRenderer>());
-            Start2();
+            laneControllers = new List<LaneController>();
         }
         
-        //public void Generate(int lanesNum)
-        public void Start2()
+        public void Generate(int lanesNum)
         {
-            var lanesNum = 3;
             // we must make sure that the position point is indeed set as the middle of the GameObject on Unity
             var gameObjectTransform = transform;
             var middlePosition = (Vector2) gameObjectTransform.position;
@@ -37,6 +38,7 @@ namespace UnityTemplateProjects
             for (var i = 0; i < lanesNum; i++)
             {
                 lastObject = InstantiateNextTo(lastObject, lanePrefab);
+                laneControllers.Add(lastObject.GetComponent<LaneController>());
                 
                 if (i < lanesNum - 1)
                 {
