@@ -20,6 +20,7 @@ namespace UnityTemplateProjects.GameConfigs
         [SerializeField] public WeightedRandomProvider<CarType> carTypes;
         [SerializeField] public WeightedRandomProvider<Object> people;
         [SerializeField] public MinMaxDefinition carSpeed;
+        [SerializeField] public MinMaxDefinition pedestrianGenerationInterval;
         [Min(0)][SerializeField] public int targetScore;
         [Min(0)][SerializeField] public int duration;
         [Min(0)][SerializeField] public int carGenerationInterval;

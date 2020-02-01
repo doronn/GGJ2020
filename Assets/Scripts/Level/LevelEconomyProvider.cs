@@ -15,6 +15,7 @@ namespace UnityTemplateProjects.Level
                 carColors = new WeightedRandomProvider<Color>(),
                 carTypes = new WeightedRandomProvider<CarType>(),
                 carSpeed = new MinMaxDefinition(10, 12),
+                pedestrianGenerationInterval = new MinMaxDefinition(10, 20),
                 people = new WeightedRandomProvider<Object>(),
                 targetScore = 100,
                 duration = 30,
@@ -26,6 +27,7 @@ namespace UnityTemplateProjects.Level
             levelEconomy.carColors.Add(Color.red, 1);
             levelEconomy.carColors.Add(Color.blue, 1);
             levelEconomy.carTypes.Add(CarType.Sedan, 1);
+            levelEconomy.carTypes.Add(CarType.Coupe, 1);
             levelEconomy.people.Add(Resources.Load("Prefabs/Person1"), 1);
             levelEconomy.people.Add(Resources.Load("Prefabs/Person2"), 1);
             levelEconomy.people.Add(Resources.Load("Prefabs/Person3"), 1);
