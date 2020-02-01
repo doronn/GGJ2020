@@ -8,14 +8,14 @@ namespace Utils
     public class EventManager : BaseSingleton<EventManager>
     {
         [SerializeField]
-        private EventDictionary events;
+        private EventDictionary _events = new EventDictionary();
         
         public void Subscribe(GGJEventType eventType, UnityAction onEvent)
         {
-            if (!events.TryGetValue(eventType, out var unityEvent))
+            if (!_events.TryGetValue(eventType, out var unityEvent))
             {
                 unityEvent = new UnityEvent();
-                events.Add(eventType, unityEvent);
+                _events.Add(eventType, unityEvent);
             }
 
             unityEvent.AddListener(onEvent);
@@ -23,7 +23,7 @@ namespace Utils
 
         public void Publish(GGJEventType eventType)
         {
-            if (!events.TryGetValue(eventType, out var unityEvent))
+            if (!_events.TryGetValue(eventType, out var unityEvent))
             {
                 return;
             }
@@ -33,11 +33,15 @@ namespace Utils
 
         public void UnSubscribe(GGJEventType eventType, UnityAction eventToRemove)
         {
-            if (!events.TryGetValue(eventType, out var unityEvent))
+            if (!_events.TryGetValue(eventType, out var unityEvent))
             {
                 return;
             }
-            
+
+            if (eventToRemove == null)
+            {
+                return;
+            }
             unityEvent.RemoveListener(eventToRemove);
         }
     }
