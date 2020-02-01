@@ -123,6 +123,7 @@
             <e p="EventsType.cs" t="Include" />
             <e p="GGJEventType.cs" t="Include" />
             <e p="MethodExtensions.cs" t="Include" />
+            <e p="SoundManager.cs" t="Include" />
             <e p="WeightedRandomProvider.cs" t="Include" />
           </e>
           <e p="World" t="Include">
