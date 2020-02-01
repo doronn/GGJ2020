@@ -8,7 +8,7 @@ using Utils;
 
 namespace DragSystem
 {
-    public class DraggableObject : MonoBehaviour, IGgDrag, IGgPointerDown, IGgPointerUp, IGgPointerExit
+    public class DraggableObject : MonoBehaviour, IGgPointerDown, IGgPointerUp
     {
         private const int DEFUALT_LAYER = 1;
         private const int HELD_LAYER = 2;
@@ -19,35 +19,28 @@ namespace DragSystem
 
         [SerializeField]
         private DropTarget _originalParent;
-
-
+        
         private float _distanceFromCamera;
         private bool _isHolding;
         private UnityAction _onReleasedOnValidDropTarget;
+        private Camera _mainCamera;
 
         private void Awake()
         {
-            var distanceFromCamera = Camera.main.transform.position - transform.position;
-            _distanceFromCamera = Mathf.Abs(distanceFromCamera.z);
-        }
-
-        private static IEnumerator WaitForFrame(Action doAfterFrame)
-        {
-            yield return null;
-            doAfterFrame?.Invoke();
-        }
-
-        public void OnGgDrag()
-        {
-            if (!_isHolding || Camera.main == null)
+            _mainCamera = Camera.main;
+            if (_mainCamera == null)
             {
                 return;
             }
+            
+            var distanceFromCamera = _mainCamera.transform.position - transform.position;
+            _distanceFromCamera = Mathf.Abs(distanceFromCamera.z);
+        }
 
-            var mousePosition = Input.mousePosition;
-            mousePosition.z = _distanceFromCamera;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            transform.position = mousePosition;
+        private static IEnumerator WaitForEndOfFrame(Action doAfterFrame)
+        {
+            yield return new WaitForEndOfFrame();
+            doAfterFrame?.Invoke();
         }
 
         public void OnGgPointerDown()
@@ -66,8 +59,8 @@ namespace DragSystem
                 gameObject.SetActive(false);
             };
             EventManager.GetInstance().Subscribe(GGJEventType.ReleasedOnValidDropTarget, _onReleasedOnValidDropTarget);
-            
-            OnGgDrag();
+
+            StartCoroutine(FollowPointer());
         }
 
         public void OnGgPointerUp()
@@ -77,10 +70,10 @@ namespace DragSystem
                 return;
             }
             _isHolding = false;
-            CarHeldController.GetInstance().currentlyHeldCarController = null;
             
-            EnumerationObject.GetInstance().StartCoroutine(WaitForFrame(() =>
+            EnumerationObject.GetInstance().StartCoroutine(WaitForEndOfFrame(() =>
             {
+                CarHeldController.GetInstance().currentlyHeldCarController = null;
                 _originalParent.ResetIsOriginal();
                 if (_isHolding)
                 {
@@ -103,9 +96,16 @@ namespace DragSystem
             });
         }
 
-        public void OnGgPointerExit()
+        private IEnumerator FollowPointer()
         {
-            OnGgPointerUp();
+            while (_isHolding)
+            {
+                var mousePosition = Input.mousePosition;
+                mousePosition.z = _distanceFromCamera;
+                mousePosition = _mainCamera.ScreenToWorldPoint(mousePosition);
+                transform.position = mousePosition;
+                yield return null;
+            }
         }
     }
 }

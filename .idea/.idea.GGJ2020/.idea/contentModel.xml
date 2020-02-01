@@ -99,6 +99,11 @@
           </e>
           <e p="LaneController.cs" t="Include" />
           <e p="LaneEndHandler.cs" t="Include" />
+          <e p="Level" t="Include">
+            <e p="LevelEconomyProvider.cs" t="Include" />
+            <e p="LevelManager.cs" t="Include" />
+            <e p="LevelProgression.cs" t="Include" />
+          </e>
           <e p="Map.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="Utils" t="Include">

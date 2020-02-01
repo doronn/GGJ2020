@@ -4,24 +4,37 @@ using UnityEngine;
 public class LaneController : MonoBehaviour
 {
     private CarGenerator _carGenerator;
-    [SerializeField] private List<CarController> carControllers;
+    [SerializeField] private List<CarController> laneControllers;
+    public bool isOn;
+    private float _generationCounter;
     
     private void Start()
     {
-        _carGenerator = new CarGenerator();
-        carControllers = new List<CarController>();
-        Invoke(nameof(AddCar), 2);
-        Invoke(nameof(AddCar), 4);
-        Invoke(nameof(AddCar), 6);
-        Invoke(nameof(AddCar), 8);
+        _carGenerator = new CarGenerator(1);
+        laneControllers = new List<CarController>();
     }
-
+    
     private void Update()
     {
-        for (var i = 0; i < carControllers.Count; i++)
+        if (!isOn)
         {
-            var carController = carControllers[i];
+            _generationCounter = 0;
+            
+            return;
+        }
 
+        _generationCounter += Time.deltaTime;
+
+        if (_generationCounter >= _carGenerator.levelEconomy.carGenerationInterval)
+        {
+            AddCar();
+            _generationCounter = 0;
+        }
+        
+        for (var i = 0; i < laneControllers.Count; i++)
+        {
+            var carController = laneControllers[i];
+            
             if (carController.isStopped)
             {
                 carController.ActualSpeed = 0;
@@ -31,15 +44,15 @@ public class LaneController : MonoBehaviour
             
             carController.ActualSpeed = i == 0 || !carController.IsBlockedByCar
                 ? carController.DesiredSpeed
-                : carControllers[i - 1].ActualSpeed;
+                : laneControllers[i - 1].ActualSpeed;
 
             carController.MoveCarThisFrame();
         }
     }
-
+    
     public void AddCar()
     {
         var newCar = _carGenerator.GenerateCarAt(transform.position);
-        carControllers.Add(newCar.GetComponent<CarController>());
+        laneControllers.Add(newCar.GetComponent<CarController>());
     }
 }

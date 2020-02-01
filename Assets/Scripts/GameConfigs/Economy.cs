@@ -1,6 +1,7 @@
 using System;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
+using Utils;
 
 namespace UnityTemplateProjects.GameConfigs
 {
@@ -13,13 +14,13 @@ namespace UnityTemplateProjects.GameConfigs
     [Serializable]
     public class LevelEconomy
     {
-        [SerializeField] public CarTypeDefinitions carTypeDefinitions;
-        [SerializeField] public UShortWeightedRandomDefinition[] initialSeatsTaken;
-        [SerializeField] public ColorWeightedRandomDefinition[] carColors;
-        [SerializeField] public CarTypeWeightedRandomDefinition[] carTypes;
+        [SerializeField] public WeightedRandomProvider<ushort> initialSeatsTaken;
+        [SerializeField] public WeightedRandomProvider<Color> carColors;
+        [SerializeField] public WeightedRandomProvider<CarType> carTypes;
         [SerializeField] public MinMaxDefinition carSpeed;
         [Min(0)][SerializeField] public int targetScore;
         [Min(0)][SerializeField] public int duration;
+        [Min(0)][SerializeField] public int carGenerationInterval;
     }
     
     [Serializable]
