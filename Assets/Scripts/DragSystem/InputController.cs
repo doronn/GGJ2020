@@ -82,6 +82,11 @@ namespace DragSystem
 
             foreach (var exitCollider in exitColliders)
             {
+                if (exitCollider == null || exitCollider.gameObject == null)
+                {
+                    continue;
+                }
+
                 var ggExit = exitCollider.GetComponent<IGgPointerExit>();
                 ggExit?.OnGgPointerExit();
             }

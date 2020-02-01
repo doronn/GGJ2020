@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LaneController : MonoBehaviour
@@ -28,7 +29,8 @@ public class LaneController : MonoBehaviour
             AddCar();
             _generationCounter = 0;
         }
-        
+
+        var removedCars = new List<CarController>();
         for (var i = 0; i < laneControllers.Count; i++)
         {
             var carController = laneControllers[i];
@@ -44,8 +46,13 @@ public class LaneController : MonoBehaviour
                 ? carController.DesiredSpeed
                 : laneControllers[i - 1].ActualSpeed;
 
-            carController.MoveCarThisFrame();
+            if (!carController.MoveCarThisFrame())
+            {
+                removedCars.Add(carController);
+            }
         }
+
+        laneControllers = laneControllers.Except(removedCars).ToList();
     }
     
     public void AddCar()
