@@ -37,7 +37,7 @@ namespace UnityTemplateProjects.Level
             _currentLevel = 1;
             _currentLevelEconomyData = LevelEconomyProvider.GetEconomyForLevel(_currentLevel);
             _elapsedTime = 0;
-            SceneManager.LoadSceneAsync("OverlayUi", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("LevelStartUi", LoadSceneMode.Additive);
             GenerateMap();
             StartCoroutine(RunLevel());
             EventManager.GetInstance().Subscribe(GGJEventType.GameStarted, StartGame);
@@ -46,6 +46,7 @@ namespace UnityTemplateProjects.Level
         public void StartGame()
         {
             _isActive = true;
+            SceneManager.LoadSceneAsync("OverlayUi", LoadSceneMode.Additive);
             EventManager.GetInstance().UnSubscribe(GGJEventType.GameStarted, StartGame);
             EventManager.GetInstance().Subscribe(GGJEventType.GamePaused, PauseGame);
         }

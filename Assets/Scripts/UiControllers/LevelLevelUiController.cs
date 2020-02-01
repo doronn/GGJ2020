@@ -12,16 +12,9 @@ namespace UnityTemplateProjects.UiControllers
         [SerializeField]
         private TextMeshProUGUI _levelText;
         
-        private UnityAction _timeUpdatedAction;
-
         private void Start()
         {
             _levelText.text = string.Format(LEVEL_FORMAT, LevelManager.GetInstance().CurrentLevel);
-        }
-
-        private void OnDestroy()
-        {
-            EventManager.GetInstance().UnSubscribe(GGJEventType.TimeUpdated, _timeUpdatedAction);
         }
     }
 }
