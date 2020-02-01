@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
     
     private void Awake()
     {
-        _levelEconomy = LevelEconomyProvider.GetEconomyForLevel(1);
+        _levelEconomy = LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel);
     }
     
     public bool IsBlockedByCar;

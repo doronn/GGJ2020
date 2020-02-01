@@ -17,7 +17,7 @@ public class CarGenerator
 
     public CarGenerator(int level)
     {
-        levelEconomy = LevelEconomyProvider.GetEconomyForLevel(1);
+        levelEconomy = LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel);
     }
     
     public GameObject GenerateCarAt(Vector2 position)

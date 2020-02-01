@@ -16,7 +16,7 @@ namespace UnityTemplateProjects.UiControllers
 
         private void Start()
         {
-            _timeText.text = TimeSpan.FromSeconds(LevelEconomyProvider.GetEconomyForLevel(1).duration).ToString();
+            _timeText.text = TimeSpan.FromSeconds(LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel).duration).ToString();
             _timeUpdatedAction = () =>
             {
                 _timeText.text = TimeSpan.FromSeconds(LevelManager.GetInstance().RemainingTime).ToString(TimeFormat);

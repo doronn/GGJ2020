@@ -34,7 +34,7 @@ namespace UnityTemplateProjects.Level
 
         private void Start()
         {
-            _currentLevel = 1;
+            _currentLevel = PlayerPrefs.GetInt(Constants.CurrLevelKey, 1);
             _currentLevelEconomyData = LevelEconomyProvider.GetEconomyForLevel(_currentLevel);
             _elapsedTime = 0;
             SceneManager.LoadSceneAsync("LevelStartUi", LoadSceneMode.Additive);
@@ -96,8 +96,19 @@ namespace UnityTemplateProjects.Level
 
         private void EndLevel()
         {
-            // Do end level logic
-            
+            if (CalculateStars() > 1)
+            {
+                SceneManager.UnloadSceneAsync("OverlayUi");
+                PlayerPrefs.SetInt(Constants.CurrLevelKey, _currentLevel + 1);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("idan");
+            }
+        }
+
+        public void ReturnToMain()
+        {
+            SceneManager.UnloadSceneAsync("OverlayUi");
+            SceneManager.LoadScene("MainScene");
         }
         
         public void GenerateMap()
@@ -111,6 +122,28 @@ namespace UnityTemplateProjects.Level
             {
                 laneController.isOn = activate;
             }
+        }
+
+        private int CalculateStars()
+        {
+            var targetScore = _currentLevelEconomyData.targetScore;
+            
+            if (_currentScore < 0.7f * targetScore)
+            {
+                return 0;
+            }
+
+            if (_currentScore < 0.8f * targetScore)
+            {
+                return 1;
+            }
+
+            if (_currentScore < 1.2f * targetScore)
+            {
+                return 2;
+            }
+            
+            return 3;
         }
     }
 }

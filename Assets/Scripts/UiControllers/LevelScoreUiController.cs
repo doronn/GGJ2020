@@ -18,11 +18,11 @@ namespace UnityTemplateProjects.UiControllers
         private void Start()
         {
             _scoreText.text = string.Format(SCORE_FORMAT, LevelManager.GetInstance().CurrentScore,
-                LevelEconomyProvider.GetEconomyForLevel(1).targetScore);
+                LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel).targetScore);
             _scoreUpdatedAction = () =>
                 {
                     _scoreText.text = string.Format(SCORE_FORMAT, LevelManager.GetInstance().CurrentScore,
-                        LevelEconomyProvider.GetEconomyForLevel(1).targetScore);
+                        LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel).targetScore);
                 };
             EventManager.GetInstance().Subscribe(GGJEventType.ScoreUpdated, _scoreUpdatedAction);
         }

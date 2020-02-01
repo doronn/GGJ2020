@@ -54,6 +54,7 @@
           <e p="License.txt" t="Include" />
           <e p="ReadMe.txt" t="Include" />
         </e>
+        <e p="MainMenuController.cs" t="Include" />
         <e p="Rotary Heart" t="Include">
           <e p="SerializableDictionary" t="Include">
             <e p="DrawKeyAsPropertyAttribute.cs" t="Include" />
@@ -110,6 +111,7 @@
             <e p="LevelLevelUiController.cs" t="Include" />
             <e p="LevelScoreUiController.cs" t="Include" />
             <e p="LevelTimerUiController.cs" t="Include" />
+            <e p="PlayLevelButtonEventDispatcher.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
             <e p="BaseSingleton.cs" t="Include" />
