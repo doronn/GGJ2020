@@ -19,6 +19,7 @@ namespace UnityTemplateProjects.Level
                 people = new WeightedRandomProvider<Object>(),
                 targetScore = 100,
                 duration = 30,
+                lanes = 3,
                 carGenerationInterval = 3
             };
             
