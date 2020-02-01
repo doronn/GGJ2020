@@ -8,6 +8,7 @@
         TimeUpdated,
         GameStarted,
         GamePaused,
-        LevelFinishContinue
+        LevelFinishContinue,
+        HideHelp
     }
 }

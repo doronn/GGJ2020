@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SumupUiScreen.unity
     guid: 68d6338ccf78c724db5ac5d75189da34
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 4df6ab9a1ff3f4d75a2bc4ead7b11b5a
   m_configObjects: {}
