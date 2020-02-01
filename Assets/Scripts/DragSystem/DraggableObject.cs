@@ -7,7 +7,7 @@ using UnityTemplateProjects.World;
 using Utils;
 
 namespace DragSystem
-{
+{ 
     public class DraggableObject : MonoBehaviour, IGgPointerDown, IGgPointerUp
     {
         private const int DEFUALT_LAYER = 1;
@@ -41,6 +41,18 @@ namespace DragSystem
         {
             yield return new WaitForEndOfFrame();
             doAfterFrame?.Invoke();
+        }
+
+        public void KillCar()
+        {
+            _isHolding = false;
+            StopAllCoroutines();
+            EventManager.GetInstance()
+                .UnSubscribe(GGJEventType.ReleasedOnValidDropTarget, _onReleasedOnValidDropTarget);
+            CarHeldController.GetInstance().currentlyHeldCarController = null;
+            _originalParent.ResetIsOriginal();
+            
+            Destroy(gameObject);
         }
 
         public void OnGgPointerDown()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DragSystem;
 using UnityEngine;
 using UnityTemplateProjects.GameConfigs;
 using UnityTemplateProjects.Level;
@@ -12,6 +13,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform[] seats;
     [SerializeField] private Queue<Object> seated;
     [SerializeField] private CarData _carData;
+    [SerializeField] private DraggableObject _myDraggedVisual;
     private LevelEconomy _levelEconomy;
     public bool isStopped;
     
@@ -40,9 +42,14 @@ public class CarController : MonoBehaviour
         chassis.color = _carData.color;
     }
     
-    public void MoveCarThisFrame()
+    public bool MoveCarThisFrame()
     {
+        if (!this)
+        {
+            return false;
+        }
         transform.Translate(new Vector3(0, Time.deltaTime * _carData.actualSpeed * Time.timeScale));
+        return true;
     }
     
     public void SetStopped(bool stop) => isStopped = stop;
@@ -51,9 +58,22 @@ public class CarController : MonoBehaviour
     
     public void ClaimCar()
     {
+        // TODO: kill claimed car
+        // Score update + _carData.seatsTaken
+
+        LevelManager.GetInstance().CurrentScore += _carData.seatsTaken;
+        
         Debug.LogWarning($"Earned {_carData.seatsTaken} points");
+        
+        KillCar();
     }
-    
+
+    public void KillCar()
+    {
+        _myDraggedVisual.KillCar();
+        Destroy(gameObject);
+    }
+
     public void DrawPassengers()
     {
         if (_carData.seatsTaken > _carData.seats)
@@ -89,5 +109,7 @@ public class CarController : MonoBehaviour
         }
         
         _carData.AddPassengers((ushort) otherPassengers.Count);
+        
+        other.KillCar();
     }
 }
