@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityTemplateProjects;
 using UnityTemplateProjects.World;
 using Utils;
 
@@ -13,15 +14,15 @@ namespace DragSystem
         private const int HELD_LAYER = 2;
         private const float MOVE_BACK_SPEED = 50f;
 
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
+        /*SerializeField]
+        private SpriteRenderer[] _spriteRenderers;*/
 
         [SerializeField]
         private DropTarget _originalParent;
 
 
         private float _distanceFromCamera;
-        private bool _isHolding = false;
+        private bool _isHolding;
         private UnityAction _onReleasedOnValidDropTarget;
 
         private void Awake()
@@ -30,7 +31,7 @@ namespace DragSystem
             _distanceFromCamera = Mathf.Abs(distanceFromCamera.z);
         }
 
-        private IEnumerator WaitForFrame(Action doAfterFrame)
+        private static IEnumerator WaitForFrame(Action doAfterFrame)
         {
             yield return null;
             doAfterFrame?.Invoke();
@@ -38,12 +39,7 @@ namespace DragSystem
 
         public void OnGgDrag()
         {
-            if (!_isHolding)
-            {
-                return;
-            }
-            
-            if (Camera.main == null)
+            if (!_isHolding || Camera.main == null)
             {
                 return;
             }
@@ -57,7 +53,12 @@ namespace DragSystem
         public void OnGgPointerDown()
         {
             _isHolding = true;
-            _spriteRenderer.sortingOrder = HELD_LAYER;
+            CarHeldController.GetInstance().currentlyHeldCarController = _originalParent.GetComponent<CarController>();
+            /*foreach (var spriteRenderer in _spriteRenderers)
+            {
+                spriteRenderer .sortingOrder = HELD_LAYER;
+            }*/
+            
             transform.SetParent(WorldRootController.GetInstance().WorldRootTransform);
 
             _onReleasedOnValidDropTarget = () =>
@@ -76,6 +77,7 @@ namespace DragSystem
                 return;
             }
             _isHolding = false;
+            CarHeldController.GetInstance().currentlyHeldCarController = null;
             
             EnumerationObject.GetInstance().StartCoroutine(WaitForFrame(() =>
             {
@@ -94,7 +96,10 @@ namespace DragSystem
             var dist = Vector3.Distance(transform.localPosition, Vector2.zero);
             transform.LeanMoveLocal(Vector2.zero, dist / MOVE_BACK_SPEED).setOnComplete(o =>
             {
-                _spriteRenderer.sortingOrder = DEFUALT_LAYER;
+                /*foreach (var spriteRenderer in _spriteRenderers)
+                {
+                    spriteRenderer.sortingOrder = DEFUALT_LAYER;
+                }*/
             });
         }
 

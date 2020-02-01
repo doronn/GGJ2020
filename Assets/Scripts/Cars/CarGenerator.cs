@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityTemplateProjects.GameConfigs;
+using UnityTemplateProjects.World;
 using Utils;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ public class CarGenerator
     private static readonly Object SedanPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}");
     private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // BusPrefab
     private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // CoupePrefab
+    private Transform CarsContainer;
 
     public CarGenerator()
     {
@@ -25,7 +27,7 @@ public class CarGenerator
         // TODO: REMOVE TEMP --->
         _desiredCarSpeed = new MinMaxDefinition(9, 14);
         
-        _initialSeatsTaken.Add(1, 10);
+        _initialSeatsTaken.Add(1, 2);
         _initialSeatsTaken.Add(2, 1);
         _colors.Add(Color.cyan, 10);
         _colors.Add(Color.blue, 10);
@@ -39,6 +41,12 @@ public class CarGenerator
     
     public GameObject GenerateCarAt(Vector2 position)
     {
+        // TODO: temp --->
+        if (CarsContainer == null)
+        {
+            CarsContainer = WorldRootController.GetInstance().WorldRootTransform;
+        }
+        
         var carData = new CarData
         {
             seatsTaken = _initialSeatsTaken.GetRandomItem(),
@@ -51,14 +59,14 @@ public class CarGenerator
         switch (carData.type)
         {
             case CarType.Sedan:
-                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, position, Quaternion.identity);
+                newObject = (GameObject) GameObject.Instantiate(SedanPrefab, position, Quaternion.identity, CarsContainer);
                 break;
             case CarType.Bus:
-                newObject = (GameObject) GameObject.Instantiate(BusPrefab, position, Quaternion.identity);
+                newObject = (GameObject) GameObject.Instantiate(BusPrefab, position, Quaternion.identity, CarsContainer);
                 carData.color = Color.white; // keep the original asset color
                 break;
             case CarType.Coupe:
-                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, position, Quaternion.identity);
+                newObject = (GameObject) GameObject.Instantiate(CoupePrefab, position, Quaternion.identity, CarsContainer);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

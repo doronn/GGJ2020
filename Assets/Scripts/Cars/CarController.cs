@@ -47,6 +47,8 @@ public class CarController : MonoBehaviour
     
     public void SetStopped(bool stop) => isStopped = stop;
     
+    public bool CanMerge(CarController other) => other != null && _carData.CanMerge(other._carData);
+    
     public void ClaimCar()
     {
         Debug.LogWarning($"Earned {_carData.seatsTaken} points");

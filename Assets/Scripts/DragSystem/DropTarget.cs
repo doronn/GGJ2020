@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityTemplateProjects;
 using Utils;
 
 namespace DragSystem
@@ -6,7 +7,7 @@ namespace DragSystem
     public class DropTarget : MonoBehaviour, IGgPointerDown, IGgPointerUp
     {
         private bool _isHover = false;
-        private bool _isOriginal = false;
+        private bool _isOriginal;
 
         public void OnGgPointerDown()
         {
@@ -21,9 +22,14 @@ namespace DragSystem
                 return;
             }
 
-            // TODO: Check merge condition
-            EventManager.GetInstance().Publish(GGJEventType.ReleasedOnValidDropTarget);
-
+            if (TryGetComponent<CarController>(out var carController))
+            {
+                Debug.Log($"Test is {carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController)}");
+                if (carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController))
+                {
+                    EventManager.GetInstance().Publish(GGJEventType.ReleasedOnValidDropTarget);
+                }
+            }
         }
 
         public void ResetIsOriginal()

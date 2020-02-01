@@ -13,7 +13,7 @@ public class CarData
     
     public bool CanMerge(CarData other)
     {
-        return seats <= seatsTaken + other.seatsTaken &&
+        return seats >= seatsTaken + other.seatsTaken &&
                (type == CarType.Bus || (type == other.type && color == other.color));
     }
     

@@ -79,6 +79,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="CarHeldController.cs" t="Include" />
           <e p="Cars" t="Include">
             <e p="CarController.cs" t="Include" />
             <e p="CarData.cs" t="Include" />
@@ -87,6 +88,12 @@
             <e p="CarType.cs" t="Include" />
           </e>
           <e p="CrossWalkController.cs" t="Include" />
+          <e p="DragSystem" t="Include">
+            <e p="DraggableObject.cs" t="Include" />
+            <e p="DropTarget.cs" t="Include" />
+            <e p="IDragInterfaces.cs" t="Include" />
+            <e p="InputController.cs" t="Include" />
+          </e>
           <e p="GameConfigs" t="Include">
             <e p="Economy.cs" t="Include" />
           </e>
@@ -97,11 +104,16 @@
           <e p="Utils" t="Include">
             <e p="BaseSingleton.cs" t="Include" />
             <e p="Constants.cs" t="Include" />
+            <e p="DragTransform.cs" t="Include" />
+            <e p="EnumerationObject.cs" t="Include" />
             <e p="EventManager.cs" t="Include" />
             <e p="EventsType.cs" t="Include" />
             <e p="GGJEventType.cs" t="Include" />
             <e p="MethodExtensions.cs" t="Include" />
             <e p="WeightedRandomProvider.cs" t="Include" />
+          </e>
+          <e p="World" t="Include">
+            <e p="WorldRootController.cs" t="Include" />
           </e>
         </e>
         <e p="TutorialInfo" t="Include">

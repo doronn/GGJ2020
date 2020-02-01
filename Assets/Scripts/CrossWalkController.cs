@@ -7,7 +7,7 @@ namespace UnityTemplateProjects
     [RequireComponent(typeof(Collider2D))]
     public class CrossWalkController : MonoBehaviour
     {
-        private readonly ISet<CarController> _hitObjects= new HashSet<CarController>();
+        private readonly ISet<CarController> _hitObjects = new HashSet<CarController>();
         [SerializeField] private bool _isLocked;
         
         public bool IsLocked

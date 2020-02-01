@@ -8,7 +8,7 @@ namespace UnityTemplateProjects
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponentInParent<CarController>(out var carController))
+            if (other.CompareTag(Constants.FrontCarColliderTag) && other.gameObject.TryGetComponentInParent<CarController>(out var carController))
             {
                 carController.ClaimCar();
             }
