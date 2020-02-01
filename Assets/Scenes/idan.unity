@@ -513,7 +513,7 @@ MonoBehaviour:
     type: 3}
   rightSidewalkPrefab: {fileID: 6455525418029448867, guid: 9fcab7945b76e41af818cfdbc53b0465,
     type: 3}
-  carControllers: []
+  laneControllers: []
 --- !u!4 &1841716551
 Transform:
   m_ObjectHideFlags: 0

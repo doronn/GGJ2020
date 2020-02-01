@@ -18,8 +18,6 @@ public class LaneController : MonoBehaviour
     {
         if (!isOn)
         {
-            _generationCounter = 0;
-            
             return;
         }
 

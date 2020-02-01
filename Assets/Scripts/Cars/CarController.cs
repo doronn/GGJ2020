@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityTemplateProjects.GameConfigs;
+using UnityTemplateProjects.Level;
 using Utils;
 using Object = UnityEngine.Object;
 
@@ -11,13 +12,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform[] seats;
     [SerializeField] private Queue<Object> seated;
     [SerializeField] private CarData _carData;
+    private LevelEconomy _levelEconomy;
     public bool isStopped;
-    private readonly WeightedRandomProvider<Object> _people = new WeightedRandomProvider<Object>();
     
     private void Awake()
     {
-        // TODO: read from economy and remove Awake
-        _people.Add(Resources.Load("Prefabs/Person1"), 1);
+        _levelEconomy = LevelEconomyProvider.GetEconomyForLevel(1);
     }
     
     public bool IsBlockedByCar;
@@ -63,7 +63,7 @@ public class CarController : MonoBehaviour
 
         for (var i = 0; i < _carData.seatsTaken; i++)
         {
-            var newPerson = Instantiate(_people.GetRandomItem(), seats[i]);
+            var newPerson = Instantiate(_levelEconomy.people.GetRandomItem(), seats[i]);
             seated.Enqueue(newPerson);
         }
     }
