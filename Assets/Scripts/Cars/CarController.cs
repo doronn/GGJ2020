@@ -58,13 +58,8 @@ public class CarController : MonoBehaviour
     
     public void ClaimCar()
     {
-        // TODO: kill claimed car
-        // Score update + _carData.seatsTaken
-
         LevelManager.GetInstance().CurrentScore += _carData.seatsTaken;
-        
         Debug.LogWarning($"Earned {_carData.seatsTaken} points");
-        
         KillCar();
     }
 
