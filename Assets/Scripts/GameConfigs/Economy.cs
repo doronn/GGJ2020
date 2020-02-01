@@ -24,7 +24,7 @@ namespace UnityTemplateProjects.GameConfigs
         [Min(0)][SerializeField] public int targetScore;
         [Min(0)][SerializeField] public int duration;
         [Min(0)][SerializeField] public int lanes;
-        [Min(0)][SerializeField] public int carGenerationInterval;
+        [Min(0)][SerializeField] public float carGenerationInterval;
     }
     
     [Serializable]
