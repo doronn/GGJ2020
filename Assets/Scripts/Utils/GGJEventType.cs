@@ -8,6 +8,7 @@
         TimeUpdated,
         GameStarted,
         GamePaused,
+        LevelFinishContinue,
         SoundHornEvent
     }
 }

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: c05b91b652639bb40801d69452a1a833
+  - enabled: 1
+    path: Assets/Scenes/SumupUiScreen.unity
+    guid: 68d6338ccf78c724db5ac5d75189da34
   m_configObjects: {}
