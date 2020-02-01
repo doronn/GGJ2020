@@ -38,7 +38,5 @@ namespace Utils
             
             throw new Exception($"{nameof(WeightedRandomProvider<T>)} error: could not generate a value");
         }
-
-        public IEnumerable<T> GetRandomItems(int count) => Enumerable.Range(0, count).Select(i => GetRandomItem());
     }
 }

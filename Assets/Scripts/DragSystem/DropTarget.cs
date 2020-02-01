@@ -26,15 +26,18 @@ namespace DragSystem
             {
                 return;
             }
+            
+            var draggedCar = CarHeldController.GetInstance().currentlyHeldCarController;
 
-            if (!carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController))
+            if (!carController.CanMerge(draggedCar))
             {
                 return;
             }
             
+            carController.CopyPassengersFrom(draggedCar);
             EventManager.GetInstance().Publish(GGJEventType.ReleasedOnValidDropTarget);
         }
-
+        
         public void ResetIsOriginal()
         {
             _isOriginal = false;
