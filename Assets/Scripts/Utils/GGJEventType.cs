@@ -9,6 +9,7 @@
         GameStarted,
         GamePaused,
         LevelFinishContinue,
+        HideHelp,
         SoundHornEvent
     }
 }
