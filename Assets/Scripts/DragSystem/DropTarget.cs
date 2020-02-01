@@ -22,14 +22,17 @@ namespace DragSystem
                 return;
             }
 
-            if (TryGetComponent<CarController>(out var carController))
+            if (!TryGetComponent<CarController>(out var carController))
             {
-                Debug.Log($"Test is {carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController)}");
-                if (carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController))
-                {
-                    EventManager.GetInstance().Publish(GGJEventType.ReleasedOnValidDropTarget);
-                }
+                return;
             }
+
+            if (!carController.CanMerge(CarHeldController.GetInstance().currentlyHeldCarController))
+            {
+                return;
+            }
+            
+            EventManager.GetInstance().Publish(GGJEventType.ReleasedOnValidDropTarget);
         }
 
         public void ResetIsOriginal()

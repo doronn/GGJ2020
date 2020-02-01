@@ -41,7 +41,7 @@ namespace DragSystem
             }
 
             var isDown = touches[0].phase == TouchPhase.Began;
-            var isDrag = touches[0].phase == TouchPhase.Moved;
+            var isDrag = touches[0].phase == TouchPhase.Moved || touches[0].phase == TouchPhase.Stationary;
             var isUp = touches[0].phase == TouchPhase.Ended;
 
             var currentColliders = new HashSet<Collider2D>();
