@@ -511,7 +511,7 @@ MonoBehaviour:
     type: 3}
   leftSidewalkPrefab: {fileID: 6455525418029448867, guid: 9fcab7945b76e41af818cfdbc53b0465,
     type: 3}
-  rightSidewalkPrefab: {fileID: 6455525418029448867, guid: 9fcab7945b76e41af818cfdbc53b0465,
+  rightSidewalkPrefab: {fileID: 6455525418029448867, guid: 03fd2e55d304ce64b857189c68a12a0a,
     type: 3}
   laneControllers: []
 --- !u!4 &1841716551
