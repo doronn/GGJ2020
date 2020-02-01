@@ -8,6 +8,7 @@ public class CarTopSensor : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
+        EventManager.GetInstance().Publish(GGJEventType.SoundHornEvent);
         if (col.CompareTag(Constants.RearCarColliderTag))
         {
             _carController.IsBlockedByCar = true;

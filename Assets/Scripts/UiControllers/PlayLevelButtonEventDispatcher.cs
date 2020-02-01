@@ -17,5 +17,11 @@ namespace UnityTemplateProjects.UiControllers
             EventManager.GetInstance().Publish(GGJEventType.LevelFinishContinue);
             SceneManager.UnloadSceneAsync("SumupUiScreen");
         }
+
+        public void OnHideHelp()
+        {
+            EventManager.GetInstance().Publish(GGJEventType.HideHelp);
+            SceneManager.UnloadSceneAsync("HowToPlay");
+        }
     }
 }
