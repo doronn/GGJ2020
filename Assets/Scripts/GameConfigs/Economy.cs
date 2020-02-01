@@ -23,7 +23,7 @@ namespace UnityTemplateProjects.GameConfigs
         [SerializeField] public MinMaxDefinition pedestrianGenerationInterval;
         [Min(0)][SerializeField] public int targetScore;
         [Min(0)][SerializeField] public int duration;
-        [Min(0)][SerializeField] public int carGenerationInterval;
+        [Min(0)][SerializeField] public float carGenerationInterval;
     }
     
     [Serializable]
