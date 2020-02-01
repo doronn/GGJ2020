@@ -224,6 +224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chassis: {fileID: 2519729246215695294}
+  _carData:
+    color: {r: 0, g: 0, b: 0, a: 0}
+    seats: 0
+    seatsTaken: 0
+    desiredSpeed: 0
+    actualSpeed: 0
+    type: 0
   isBlockedByCar: 0
 --- !u!50 &7877921295666025128
 Rigidbody2D:
@@ -237,7 +244,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 24
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -449,7 +456,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.65, y: -4}
@@ -478,7 +485,7 @@ GameObject:
   - component: {fileID: 8632775400192126465}
   m_Layer: 0
   m_Name: FrontCollider
-  m_TagString: Untagged
+  m_TagString: FrontCarCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

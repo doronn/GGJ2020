@@ -7,10 +7,10 @@ public class CarTopSensor : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        _carController.isBlockedByCar = true;
+        _carController.IsBlockedByCar = true;
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        _carController.isBlockedByCar = false;
+        _carController.IsBlockedByCar = false;
     }
 }

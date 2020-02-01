@@ -22,17 +22,17 @@ namespace Utils
         
         public T GetRandomItem()
         {
-            var randomWeight = Random.Range(0, _totalWeight);
+            var randomWeight = Random.Range(0, (float) _totalWeight);
             var currentWeight = 0;
             
             foreach (var kvp in _items)
             {
-                if (randomWeight >= currentWeight)
+                currentWeight += kvp.Key;
+                
+                if (currentWeight >= randomWeight)
                 {
                     return kvp.Value;
                 }
-                
-                currentWeight += kvp.Key;
             }
             
             throw new Exception($"{nameof(WeightedRandomProvider<T>)} error: could not generate a value");
