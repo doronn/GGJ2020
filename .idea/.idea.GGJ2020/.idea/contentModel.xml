@@ -110,6 +110,7 @@
           <e p="UiControllers" t="Include">
             <e p="LevelLevelUiController.cs" t="Include" />
             <e p="LevelScoreUiController.cs" t="Include" />
+            <e p="LevelStarsUiController.cs" t="Include" />
             <e p="LevelTimerUiController.cs" t="Include" />
             <e p="PlayLevelButtonEventDispatcher.cs" t="Include" />
           </e>
