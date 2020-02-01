@@ -2,6 +2,7 @@ using System;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 using Utils;
+using Object = UnityEngine.Object;
 
 namespace UnityTemplateProjects.GameConfigs
 {
@@ -17,6 +18,7 @@ namespace UnityTemplateProjects.GameConfigs
         [SerializeField] public WeightedRandomProvider<ushort> initialSeatsTaken;
         [SerializeField] public WeightedRandomProvider<Color> carColors;
         [SerializeField] public WeightedRandomProvider<CarType> carTypes;
+        [SerializeField] public WeightedRandomProvider<Object> people;
         [SerializeField] public MinMaxDefinition carSpeed;
         [Min(0)][SerializeField] public int targetScore;
         [Min(0)][SerializeField] public int duration;

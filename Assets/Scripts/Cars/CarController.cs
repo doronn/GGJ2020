@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DragSystem;
 using UnityEngine;
+using UnityTemplateProjects.GameConfigs;
 using UnityTemplateProjects.Level;
 using Utils;
 using Object = UnityEngine.Object;
@@ -14,13 +14,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private Queue<Object> seated;
     [SerializeField] private CarData _carData;
     [SerializeField] private DraggableObject _myDraggedVisual;
+    private LevelEconomy _levelEconomy;
     public bool isStopped;
-    private readonly WeightedRandomProvider<Object> _people = new WeightedRandomProvider<Object>();
     
     private void Awake()
     {
-        // TODO: read from economy and remove Awake
-        _people.Add(Resources.Load("Prefabs/Person1"), 1);
+        _levelEconomy = LevelEconomyProvider.GetEconomyForLevel(1);
     }
     
     public bool IsBlockedByCar;
@@ -45,7 +44,7 @@ public class CarController : MonoBehaviour
     
     public bool MoveCarThisFrame()
     {
-        if (this == null)
+        if (!this)
         {
             return false;
         }
@@ -84,7 +83,7 @@ public class CarController : MonoBehaviour
 
         for (var i = 0; i < _carData.seatsTaken; i++)
         {
-            var newPerson = Instantiate(_people.GetRandomItem(), seats[i]);
+            var newPerson = Instantiate(_levelEconomy.people.GetRandomItem(), seats[i]);
             seated.Enqueue(newPerson);
         }
     }
