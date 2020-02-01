@@ -4,6 +4,7 @@
     {
         InputTouchUp,
         ReleasedOnValidDropTarget,
-        ScoreUpdated
+        ScoreUpdated,
+        TimeUpdated
     }
 }
