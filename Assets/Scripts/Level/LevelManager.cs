@@ -91,23 +91,28 @@ namespace UnityTemplateProjects.Level
             
             SetLanesActivation(false);
             
-            EndLevel();
+            
+            SceneManager.UnloadSceneAsync("OverlayUi");
+            SceneManager.LoadSceneAsync("SumupUiScreen", LoadSceneMode.Additive);
+            EventManager.GetInstance().Subscribe(GGJEventType.LevelFinishContinue, EndLevel);
         }
 
         private void EndLevel()
         {
             if (CalculateStars() > 1)
             {
-                SceneManager.UnloadSceneAsync("OverlayUi");
                 PlayerPrefs.SetInt(Constants.CurrLevelKey, _currentLevel + 1);
                 PlayerPrefs.Save();
                 SceneManager.LoadScene("idan");
+            }
+            else
+            {
+                ReturnToMain();
             }
         }
 
         public void ReturnToMain()
         {
-            SceneManager.UnloadSceneAsync("OverlayUi");
             SceneManager.LoadScene("MainScene");
         }
         
@@ -124,7 +129,7 @@ namespace UnityTemplateProjects.Level
             }
         }
 
-        private int CalculateStars()
+        public int CalculateStars()
         {
             var targetScore = _currentLevelEconomyData.targetScore;
             
