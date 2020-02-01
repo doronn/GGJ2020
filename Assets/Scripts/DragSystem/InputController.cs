@@ -110,8 +110,9 @@ namespace DragSystem
 
     public class InputHelper : MonoBehaviour
     {
+#if UNITY_EDITOR
         private static TouchCreator lastFakeTouch;
-
+#endif
         public static List<Touch> GetTouches()
         {
             List<Touch> touches = new List<Touch>();

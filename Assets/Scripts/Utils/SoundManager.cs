@@ -18,9 +18,8 @@ namespace UnityTemplateProjects
         public void SoundHorn()
         {
             //var sound = Resources.Load("Sounds/Horn");
-            if (Random.Range(0f, 4f) < 1f)
+            if (Random.Range(0f, 4f) < 0.4f)
             {
-
                 beepSource.Play();
             }
         }
