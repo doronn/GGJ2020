@@ -38,7 +38,7 @@ namespace UnityTemplateProjects
             for (var i = 0; i < lanesNum; i++)
             {
                 lastObject = InstantiateNextTo(lastObject, lanePrefab);
-                laneControllers.Add(lastObject.GetComponent<LaneController>());
+                laneControllers.Add(lastObject.GetComponentInChildren<LaneController>());
                 
                 if (i < lanesNum - 1)
                 {
