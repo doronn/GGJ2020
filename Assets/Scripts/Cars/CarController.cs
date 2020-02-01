@@ -11,7 +11,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform[] seats;
     [SerializeField] private Queue<Object> seated;
     [SerializeField] private CarData _carData;
-    [SerializeField] private bool isStopped;
+    public bool isStopped;
     private readonly WeightedRandomProvider<Object> _people = new WeightedRandomProvider<Object>();
     
     private void Awake()
@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
         // TODO: read from economy and remove Awake
         _people.Add(Resources.Load("Prefabs/Person1"), 1);
     }
-
+    
     public bool IsBlockedByCar;
     
     public float ActualSpeed
@@ -35,8 +35,8 @@ public class CarController : MonoBehaviour
     public void SetData(CarData data)
     {
         _carData = data;
-        /*seated = new Queue<Object>(seats.Length);
-        AddPassengers(Enumerable.Range(0, data.seatsTaken).Select(i => _people.GetRandomItem()).ToArray());*/
+        seated = new Queue<Object>(seats.Length);
+        DrawPassengers();
         chassis.color = _carData.color;
     }
     
@@ -45,26 +45,40 @@ public class CarController : MonoBehaviour
         transform.Translate(new Vector3(0, Time.deltaTime * _carData.actualSpeed * Time.timeScale));
     }
     
-    public bool IsStopped() => isStopped;
-    
     public void SetStopped(bool stop) => isStopped = stop;
     
     public void ClaimCar()
     {
         Debug.LogWarning($"Earned {_carData.seatsTaken} points");
     }
-
-    public void AddPassengers(params Object[] passengers)
+    
+    public void DrawPassengers()
     {
-        if (_carData.seatsTaken + passengers.Length > _carData.seats)
+        if (_carData.seatsTaken > _carData.seats)
         {
             throw new ArgumentException("There are not enough seats to be taken");
         }
 
+        for (var i = 0; i < _carData.seatsTaken; i++)
+        {
+            var newPerson = Instantiate(_people.GetRandomItem(), seats[i]);
+            seated.Enqueue(newPerson);
+        }
+    }
+    
+    public void AddPassengers(ushort count)
+    {
+        if (_carData.seatsTaken + count > _carData.seats)
+        {
+            throw new ArgumentException("There are not enough seats to be taken");
+        }
+        
+        var passengers = _people.GetRandomItems(count).ToArray();
+        
         for (var i = 0; i < passengers.Length; i++)
         {
             var seatIndex = i + _carData.seatsTaken;
-            var newPerson = Instantiate(passengers[i], seats[seatIndex].position, Quaternion.identity);
+            var newPerson = Instantiate(passengers[i], seats[seatIndex]);
             seated.Enqueue(newPerson);
         }
         

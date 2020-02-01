@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityTemplateProjects.GameConfigs;
 using Utils;
@@ -13,8 +12,8 @@ public class CarGenerator
     private readonly WeightedRandomProvider<CarType> _initialCarType;
     private readonly MinMaxDefinition _desiredCarSpeed;
     private static readonly Object SedanPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}");
-    private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(BusPrefab)}");
-    private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(CoupePrefab)}");
+    private static readonly Object BusPrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // BusPrefab
+    private static readonly Object CoupePrefab = Resources.Load($"Prefabs/{nameof(SedanPrefab)}"); // CoupePrefab
 
     public CarGenerator()
     {

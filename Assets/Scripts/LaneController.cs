@@ -22,7 +22,7 @@ public class LaneController : MonoBehaviour
         {
             var carController = carControllers[i];
 
-            if (carController.IsStopped())
+            if (carController.isStopped)
             {
                 carController.ActualSpeed = 0;
                 

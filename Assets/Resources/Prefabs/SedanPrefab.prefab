@@ -297,10 +297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chassis: {fileID: 2519729246215695294}
   seats:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1057514001020623123}
+  - {fileID: 7965909397679704615}
+  - {fileID: 8542963706635185406}
+  - {fileID: 6248475448540918244}
   _carData:
     color: {r: 0, g: 0, b: 0, a: 0}
     seats: 0
