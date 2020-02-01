@@ -4,6 +4,9 @@ using Utils;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _playButton;
+    
     private bool _isHelpShown = false;
 
     public void Start()
@@ -18,6 +21,7 @@ public class MainMenuController : MonoBehaviour
     private void HideHelp()
     {
         PlayerPrefs.SetInt(Constants.HelpWasShown, 1);
+        _playButton.SetActive(true);
         _isHelpShown = false;
     }
 
@@ -28,6 +32,7 @@ public class MainMenuController : MonoBehaviour
             return;
         }
         
+        _playButton.SetActive(false);
         EventManager.GetInstance().Subscribe(GGJEventType.HideHelp, HideHelp);
         SceneManager.LoadSceneAsync("HowToPlay", LoadSceneMode.Additive);
         _isHelpShown = true;
