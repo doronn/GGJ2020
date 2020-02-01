@@ -3,6 +3,7 @@
     public enum GGJEventType
     {
         InputTouchUp,
-        ReleasedOnValidDropTarget
+        ReleasedOnValidDropTarget,
+        ScoreUpdated
     }
 }

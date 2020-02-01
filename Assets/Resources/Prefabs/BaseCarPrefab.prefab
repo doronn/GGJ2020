@@ -221,6 +221,7 @@ MonoBehaviour:
     desiredSpeed: 0
     actualSpeed: 0
     type: 0
+  _myDraggedVisual: {fileID: 3119586689640096188}
   isStopped: 0
   IsBlockedByCar: 0
 --- !u!50 &8716974305122363361
