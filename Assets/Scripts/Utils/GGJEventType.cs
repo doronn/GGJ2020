@@ -5,6 +5,8 @@
         InputTouchUp,
         ReleasedOnValidDropTarget,
         ScoreUpdated,
-        TimeUpdated
+        TimeUpdated,
+        GameStarted,
+        GamePaused
     }
 }
