@@ -107,7 +107,9 @@
           <e p="Map.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="UiControllers" t="Include">
+            <e p="LevelLevelUiController.cs" t="Include" />
             <e p="LevelScoreUiController.cs" t="Include" />
+            <e p="LevelTimerUiController.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
             <e p="BaseSingleton.cs" t="Include" />

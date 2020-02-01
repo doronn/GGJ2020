@@ -16,6 +16,8 @@ namespace UnityTemplateProjects.Level
         private float _elapsedTime;
         private int _currentLevel;
 
+        private bool _isActive;
+
         public int CurrentScore
         {
             get => _currentScore;
@@ -36,18 +38,46 @@ namespace UnityTemplateProjects.Level
             _currentLevelEconomyData = LevelEconomyProvider.GetEconomyForLevel(_currentLevel);
             _elapsedTime = 0;
             SceneManager.LoadSceneAsync("OverlayUi", LoadSceneMode.Additive);
-            Invoke(nameof(GenerateMap), 2);
-            Invoke(nameof(ActivateLanes), 3);
-
+            GenerateMap();
             StartCoroutine(RunLevel());
+            EventManager.GetInstance().Subscribe(GGJEventType.GameStarted, StartGame);
         }
-
+        
+        public void StartGame()
+        {
+            _isActive = true;
+            EventManager.GetInstance().UnSubscribe(GGJEventType.GameStarted, StartGame);
+            EventManager.GetInstance().Subscribe(GGJEventType.GamePaused, PauseGame);
+        }
+        
+        public void PauseGame()
+        {
+            _isActive = false;
+            EventManager.GetInstance().UnSubscribe(GGJEventType.GamePaused, StartGame);
+            EventManager.GetInstance().Subscribe(GGJEventType.GameStarted, StartGame);
+        }
+        
         private IEnumerator RunLevel()
         {
-            var secondsPassed = 0;
-            while (_currentLevelEconomyData.duration > _elapsedTime)
+            while (!_isActive)
             {
                 yield return null;
+            }
+            
+            SetLanesActivation(true);
+            
+            var secondsPassed = 0;
+            
+            while (_currentLevelEconomyData.duration > _elapsedTime)
+            {
+                while (!_isActive)
+                {
+                    SetLanesActivation(false);
+                    yield return null;
+                }
+                
+                yield return null;
+                SetLanesActivation(true);
                 _elapsedTime += Time.deltaTime;
                 var currentElapsedSeconds = (int)Mathf.Floor(_elapsedTime);
 
@@ -58,24 +88,27 @@ namespace UnityTemplateProjects.Level
                 }
             }
             
+            SetLanesActivation(false);
+            
             EndLevel();
         }
 
         private void EndLevel()
         {
             // Do end level logic
+            
         }
         
         public void GenerateMap()
         {
-            map.Generate(3);
+            map.Generate(_currentLevelEconomyData.lanes);
         }
 
-        public void ActivateLanes()
+        public void SetLanesActivation(bool activate)
         {
             foreach (var laneController in map.laneControllers)
             {
-                laneController.isOn = true;
+                laneController.isOn = activate;
             }
         }
     }
