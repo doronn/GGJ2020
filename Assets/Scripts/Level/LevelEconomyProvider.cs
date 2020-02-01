@@ -14,13 +14,13 @@ namespace UnityTemplateProjects.Level
                 initialSeatsTaken = new WeightedRandomProvider<ushort>(),
                 carColors = new WeightedRandomProvider<Color>(),
                 carTypes = new WeightedRandomProvider<CarType>(),
-                carSpeed = new MinMaxDefinition(10, 12),
+                carSpeed = new MinMaxDefinition(4, 6),
                 pedestrianGenerationInterval = new MinMaxDefinition(10, 20),
                 people = new WeightedRandomProvider<Object>(),
                 targetScore = 100,
                 duration = 30,
                 lanes = 3,
-                carGenerationInterval = 3
+                carGenerationInterval = 3f
             };
             
             levelEconomy.initialSeatsTaken.Add(1, 3);
