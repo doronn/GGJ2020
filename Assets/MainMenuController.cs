@@ -4,7 +4,10 @@ using Utils;
 
 public class MainMenuController : MonoBehaviour
 {
-    private bool _isHelpShown = false;
+    private bool _isHelpShown;
+    [SerializeField] private AudioSource backgroundAudioSource;
+    [SerializeField] private AudioSource hornAudioSource;
+    [SerializeField] private GameObject[] objectsToHide;
 
     public void Start()
     {
@@ -40,8 +43,19 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadLevel()
     {
+        backgroundAudioSource.Stop();
+        hornAudioSource.Play();
+
+        foreach (var objectToHide in objectsToHide)
+        {
+            objectToHide.SetActive(false);
+        }
+        
+        Invoke(nameof(LoadLevelScene), 2f);
+    }
+
+    public void LoadLevelScene()
+    {
         SceneManager.LoadScene("idan");
     }
-    
-    
 }
