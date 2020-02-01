@@ -68,22 +68,26 @@ public class CarController : MonoBehaviour
         }
     }
     
-    public void AddPassengers(ushort count)
+    public void CopyPassengersFrom(CarController other)
     {
-        if (_carData.seatsTaken + count > _carData.seats)
+        var otherSeatsTaken = other._carData.seatsTaken;
+        
+        if (_carData.seatsTaken + otherSeatsTaken > _carData.seats)
         {
             throw new ArgumentException("There are not enough seats to be taken");
         }
+
+        var otherPassengers = other.seated;
+        var i = 0;
         
-        var passengers = _people.GetRandomItems(count).ToArray();
-        
-        for (var i = 0; i < passengers.Length; i++)
+        foreach (var otherPassenger in otherPassengers)
         {
-            var seatIndex = i + _carData.seatsTaken;
-            var newPerson = Instantiate(passengers[i], seats[seatIndex]);
+            var nextSeatIndex = i + _carData.seatsTaken;
+            var newPerson = Instantiate(otherPassenger, seats[nextSeatIndex]);
             seated.Enqueue(newPerson);
+            i++;
         }
         
-        _carData.AddPassengers((ushort) passengers.Length);
+        _carData.AddPassengers((ushort) otherPassengers.Count);
     }
 }
