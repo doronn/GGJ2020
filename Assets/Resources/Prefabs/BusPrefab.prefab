@@ -529,6 +529,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1021860539203597899, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 6.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021860539203597899, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021860539203597899, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 14.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021860539203597899, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1244466577819377445, guid: 48f74aec773874834b7e52d9bbe5a06d,
         type: 3}
       propertyPath: m_Name
@@ -632,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
         type: 3}
       propertyPath: seats.Array.size
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
         type: 3}
@@ -654,6 +674,46 @@ PrefabInstance:
       propertyPath: seats.Array.data[3]
       value: 
       objectReference: {fileID: 1530933521348682398}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[4]
+      value: 
+      objectReference: {fileID: 2271409921904245414}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[5]
+      value: 
+      objectReference: {fileID: 1517111914469723129}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[6]
+      value: 
+      objectReference: {fileID: 2419441051742067109}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[7]
+      value: 
+      objectReference: {fileID: 1834436929913322905}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[8]
+      value: 
+      objectReference: {fileID: 5118397581620194110}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[9]
+      value: 
+      objectReference: {fileID: 5148696937524880169}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[10]
+      value: 
+      objectReference: {fileID: 360246726498118890}
+    - target: {fileID: 7914212343211777110, guid: 48f74aec773874834b7e52d9bbe5a06d,
+        type: 3}
+      propertyPath: seats.Array.data[11]
+      value: 
+      objectReference: {fileID: 6255362337287548246}
     - target: {fileID: 9157505895023793100, guid: 48f74aec773874834b7e52d9bbe5a06d,
         type: 3}
       propertyPath: m_Name
