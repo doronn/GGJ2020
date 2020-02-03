@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,12 +9,11 @@ namespace UnityTemplateProjects.Level
     public class LevelManager : BaseSingleton<LevelManager>
     {
         [SerializeField] private Map map;
+        [SerializeField] private SoundsManagerProvider soundsManagerProvider;
 
         private LevelEconomy _currentLevelEconomyData;
         private int _currentScore;
         private float _elapsedTime;
-        private int _currentLevel;
-
         private bool _isActive;
 
         public int CurrentScore
@@ -28,14 +26,14 @@ namespace UnityTemplateProjects.Level
             }
         }
 
-        public int CurrentLevel => _currentLevel;
+        public int CurrentLevel { get; private set; }
 
         public float RemainingTime => Mathf.Max(0, _currentLevelEconomyData.duration - _elapsedTime);
 
         private void Start()
         {
-            _currentLevel = PlayerPrefs.GetInt(Constants.CurrLevelKey, 1);
-            _currentLevelEconomyData = LevelEconomyProvider.GetEconomyForLevel(_currentLevel);
+            CurrentLevel = PlayerPrefs.GetInt(Constants.CurrLevelKey, 1);
+            _currentLevelEconomyData = LevelEconomyProvider.GetEconomyForLevel(CurrentLevel);
             _elapsedTime = 0;
             SceneManager.LoadSceneAsync("LevelStartUi", LoadSceneMode.Additive);
             GenerateMap();
@@ -91,7 +89,7 @@ namespace UnityTemplateProjects.Level
             
             SetLanesActivation(false);
             
-            
+            soundsManagerProvider.Stop(4);
             SceneManager.UnloadSceneAsync("OverlayUi");
             SceneManager.LoadSceneAsync("SumupUiScreen", LoadSceneMode.Additive);
             EventManager.GetInstance().Subscribe(GGJEventType.LevelFinishContinue, EndLevel);
@@ -101,9 +99,9 @@ namespace UnityTemplateProjects.Level
         {
             if (CalculateStars() > 1)
             {
-                PlayerPrefs.SetInt(Constants.CurrLevelKey, _currentLevel + 1);
+                PlayerPrefs.SetInt(Constants.CurrLevelKey, CurrentLevel + 1);
                 PlayerPrefs.Save();
-                SceneManager.LoadScene("idan");
+                SceneManager.LoadScene("Level");
             }
             else
             {

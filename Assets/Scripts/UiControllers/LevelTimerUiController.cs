@@ -16,12 +16,15 @@ namespace UnityTemplateProjects.UiControllers
 
         private void Start()
         {
-            _timeText.text = TimeSpan.FromSeconds(LevelEconomyProvider.GetEconomyForLevel(LevelManager.GetInstance().CurrentLevel).duration).ToString(TimeFormat);
+            var levelManager = LevelManager.GetInstance();
+            var levelEconomy = LevelEconomyProvider.GetEconomyForLevel(levelManager.CurrentLevel);
+            var eventManager = EventManager.GetInstance();
+            _timeText.text = TimeSpan.FromSeconds(levelEconomy.duration).ToString(TimeFormat);
             _timeUpdatedAction = () =>
             {
-                _timeText.text = TimeSpan.FromSeconds(LevelManager.GetInstance().RemainingTime).ToString(TimeFormat);
+                _timeText.text = TimeSpan.FromSeconds(levelManager.RemainingTime).ToString(TimeFormat);
             };
-            EventManager.GetInstance().Subscribe(GGJEventType.TimeUpdated, _timeUpdatedAction);
+            eventManager.Subscribe(GGJEventType.TimeUpdated, _timeUpdatedAction);
         }
 
         private void OnDestroy()

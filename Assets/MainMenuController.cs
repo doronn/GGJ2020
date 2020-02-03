@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private AudioSource backgroundAudioSource;
-    [SerializeField] private AudioSource hornAudioSource;
-    [SerializeField] private GameObject[] objectsToHide;
-    [SerializeField] private GameObject _playButton;
+    [SerializeField] private GameObject[] objectsToHideOnPlay;
+    [SerializeField] private GameObject playButton;
+    [SerializeField] private GameObject helpButton;
     
-    private bool _isHelpShown = false;
+    private bool _isHelpShown;
 
+    private void Awake()
+    {
+        SceneManager.LoadScene("Sounds", LoadSceneMode.Additive);
+    }
+    
     public void Start()
     {
         var shouldShowHelpFirstTime = PlayerPrefs.GetInt(Constants.HelpWasShown, 0) == 0;
+        
         if (shouldShowHelpFirstTime)
         {
             ShowHelp();
@@ -23,7 +29,8 @@ public class MainMenuController : MonoBehaviour
     private void HideHelp()
     {
         PlayerPrefs.SetInt(Constants.HelpWasShown, 1);
-        _playButton.SetActive(true);
+        playButton.SetActive(true);
+        helpButton.SetActive(true);
         _isHelpShown = false;
     }
 
@@ -34,23 +41,16 @@ public class MainMenuController : MonoBehaviour
             return;
         }
         
-        _playButton.SetActive(false);
+        playButton.SetActive(false);
+        helpButton.SetActive(false);
         EventManager.GetInstance().Subscribe(GGJEventType.HideHelp, HideHelp);
         SceneManager.LoadSceneAsync("HowToPlay", LoadSceneMode.Additive);
         _isHelpShown = true;
     }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
+    
     public void LoadLevel()
     {
-        backgroundAudioSource.Stop();
-        hornAudioSource.Play();
-
-        foreach (var objectToHide in objectsToHide)
+        foreach (var objectToHide in objectsToHideOnPlay)
         {
             objectToHide.SetActive(false);
         }
@@ -58,8 +58,8 @@ public class MainMenuController : MonoBehaviour
         Invoke(nameof(LoadLevelScene), 2f);
     }
 
-    public void LoadLevelScene()
+    private void LoadLevelScene()
     {
-        SceneManager.LoadScene("idan");
+        SceneManager.LoadScene("Level");
     }
 }

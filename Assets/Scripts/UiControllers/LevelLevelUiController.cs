@@ -1,8 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityTemplateProjects.Level;
-using Utils;
 
 namespace UnityTemplateProjects.UiControllers
 {

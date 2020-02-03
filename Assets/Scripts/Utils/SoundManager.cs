@@ -9,19 +9,10 @@ namespace UnityTemplateProjects
     {
         //start should subscribe (eventmanager.subscribe) give it a function that resource.loads the sound
         [SerializeField]
-        public AudioSource beepSource;
+        //public AudioSource beepSource;
         public void Start()
         {
-            EventManager.GetInstance().Subscribe(GGJEventType.SoundHornEvent, SoundHorn);
-        }
-
-        public void SoundHorn()
-        {
-            //var sound = Resources.Load("Sounds/Horn");
-            if (Random.Range(0f, 4f) < 0.4f)
-            {
-                beepSource.Play();
-            }
+            //EventManager.GetInstance().Subscribe(GGJEventType.SoundHornEvent, SoundHorn);
         }
     }
 }

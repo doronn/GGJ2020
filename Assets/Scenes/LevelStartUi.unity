@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 348629954}
   - component: {fileID: 348629953}
   - component: {fileID: 348629955}
+  - component: {fileID: 348629956}
   m_Layer: 5
   m_Name: LevelPanel
   m_TagString: Untagged
@@ -681,6 +682,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5202f981bdce4a09b7ecbfc6fee2aeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &348629956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348629951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89db7ccf2b7ef4bfebccddc2a2c9a46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwakeIndices: 
 --- !u!1 &928429573
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.72217476}
   m_AnchorMax: {x: 1, y: 0.90087795}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1232270025
@@ -852,7 +866,7 @@ GameObject:
   - component: {fileID: 1367890052}
   - component: {fileID: 1367890051}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,6 +941,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 348629956}
+        m_MethodName: Play
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1132,4 +1157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3317b373d75d43cc96dd1a06dbb691a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 76623099}
+  scoreText: {fileID: 76623099}

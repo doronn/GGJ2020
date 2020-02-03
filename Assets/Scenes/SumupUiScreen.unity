@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3317b373d75d43cc96dd1a06dbb691a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 1003975973}
+  scoreText: {fileID: 1003975973}
 --- !u!1 &808563977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 1921159002}
   - component: {fileID: 1921159001}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,6 +1261,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1932068302}
+        m_MethodName: Play
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1921159002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,6 +1320,7 @@ GameObject:
   - component: {fileID: 1932068301}
   - component: {fileID: 1932068300}
   - component: {fileID: 1932068299}
+  - component: {fileID: 1932068302}
   m_Layer: 5
   m_Name: LevelPanel
   m_TagString: Untagged
@@ -1388,6 +1400,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932068297}
   m_CullTransparentMesh: 0
+--- !u!114 &1932068302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932068297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89db7ccf2b7ef4bfebccddc2a2c9a46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwakeIndices: 
 --- !u!1 &2079578997
 GameObject:
   m_ObjectHideFlags: 0

@@ -130,6 +130,8 @@
             <e p="WorldRootController.cs" t="Include" />
           </e>
         </e>
+        <e p="SoundsManager.cs" t="Include" />
+        <e p="SoundsManagerProvider.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
